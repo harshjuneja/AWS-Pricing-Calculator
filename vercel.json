@@ -1,0 +1,10 @@
+{
+  "redirects":[
+    {
+      "source":"/",
+      "destination":"/price.html",
+      "permanent":true
+    }
+  ]
+}
+  
