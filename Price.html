@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Pricing Calculator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+            color: #374151; /* Dark gray text */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+        .section-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2.5rem;
+        }
+        .table-header {
+            background-color: #e5e7eb; /* Light gray for table headers */
+            color: #1f2937;
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+        .table-row:nth-child(even) {
+            background-color: #f9fafb; /* Slightly darker for even rows */
+        }
+        .table-cell {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        h1, h2, h3 {
+            color: #111827; /* Darker headings */
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white py-6 shadow-md">
+        <div class="container text-center">
+            <h1 class="text-4xl font-bold">AWS Pricing Estimator</h1>
+            <p class="text-lg mt-2">Understand the costs of various AWS services</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-10">
+        <div class="container">
+
+            <!-- Task 1: EC2 Instance Pricing -->
+            <section id="ec2-pricing" class="section-card">
+                <h2 class="text-3xl mb-6 text-center">1. EC2 Instance Pricing Scenarios (Approx. US East - N. Virginia)</h2>
+                <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                    Explore different EC2 instance types and their typical use cases, approximate specifications, common pricing approaches, and estimated monthly costs.
+                </p>
+                <div class="overflow-x-auto rounded-lg border border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="table-header">Usage Type</th>
+                                <th class="table-header">Instance Type</th>
+                                <th class="table-header">Description</th>
+                                <th class="table-header">Use Case</th>
+                                <th class="table-header">Approx. Specs</th>
+                                <th class="table-header">Pricing Approach</th>
+                                <th class="table-header">Approx. Monthly Cost (On-Demand)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="table-row">
+                                <td class="table-cell">Low</td>
+                                <td class="table-cell">t3.micro</td>
+                                <td class="table-cell">Burstable instance</td>
+                                <td class="table-cell">Hosting company blog or simple static web app</td>
+                                <td class="table-cell">2 vCPU, 1 GiB RAM</td>
+                                <td class="table-cell">On-Demand</td>
+                                <td class="table-cell">$7.59</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell">Moderate</td>
+                                <td class="table-cell">m5.large</td>
+                                <td class="table-cell">Balanced instance</td>
+                                <td class="table-cell">Web app + backend with moderate user load</td>
+                                <td class="table-cell">2 vCPU, 8 GiB RAM</td>
+                                <td class="table-cell">On-Demand or Reserved</td>
+                                <td class="table-cell">$70.08 (On-Demand)</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell">High</td>
+                                <td class="table-cell">c5.4xlarge</td>
+                                <td class="table-cell">Compute-optimized</td>
+                                <td class="table-cell">Machine Learning training, High-performance computing</td>
+                                <td class="table-cell">16 vCPU, 32 GiB RAM</td>
+                                <td class="table-cell">On-Demand with Auto Scaling or Spot Instances</td>
+                                <td class="table-cell">$496.40 (On-Demand)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Task 2: Storage Costs (S3, EBS, EFS) -->
+            <section id="storage-pricing" class="section-card">
+                <h2 class="text-3xl mb-6 text-center">2. Estimate Costs for S3, EBS, EFS (Approx. US East - N. Virginia)</h2>
+                <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                    Understand tiered pricing models, select storage classes, and configure data transfer and replication for various storage services.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- S3 Section -->
+                    <div class="bg-blue-50 p-6 rounded-lg shadow-sm border border-blue-200">
+                        <h3 class="text-2xl font-semibold mb-4 text-blue-800">Amazon S3 (Object Storage)</h3>
+                        <ul class="list-disc list-inside space-y-3 text-gray-700">
+                            <li><strong>100 GB for static website, infrequent access:</strong> Approx. $2.30/month (S3 Standard-IA).</li>
+                            <li><strong>500 GB, video lectures & documents, mixed access patterns:</strong> Approx. $11.50/month (S3 Standard-IA).</li>
+                            <li><strong>5 TB, HD video hosting, frequently accessed globally:</strong> Approx. $0.023/GB for first 50TB (S3 Standard), so ~ $115/month.</li>
+                        </ul>
+                    </div>
+
+                    <!-- EBS Section -->
+                    <div class="bg-green-50 p-6 rounded-lg shadow-sm border border-green-200">
+                        <h3 class="text-2xl font-semibold mb-4 text-green-800">Amazon EBS (Block Storage)</h3>
+                        <ul class="list-disc list-inside space-y-3 text-gray-700">
+                            <li><strong>1 General Purpose SSD (gp3) volume, 50 GB:</strong> Approx. $4.00/month ($0.08/GB-month).</li>
+                            <li><strong>2 gp3 volumes (100 GB each) for app + DB:</strong> Approx. $16.00/month ($0.08/GB-month * 200 GB).</li>
+                            <li><strong>4 io2 volumes (500 GB each) for high IOPS DB and critical apps:</strong> Approx. $250/month ($0.125/GB-month * 2000 GB).</li>
+                        </ul>
+                    </div>
+
+                    <!-- EFS Section -->
+                    <div class="bg-purple-50 p-6 rounded-lg shadow-sm border border-purple-200">
+                        <h3 class="text-2xl font-semibold mb-4 text-purple-800">Amazon EFS (File Storage)</h3>
+                        <ul class="list-disc list-inside space-y-3 text-gray-700">
+                            <li><strong>100 GB, burst mode, used by one dev server:</strong> Approx. $30.00/month ($0.30/GB-month Standard).</li>
+                            <li><strong>500 GB shared by multiple dev/test EC2s:</strong> Approx. $150.00/month ($0.30/GB-month Standard).</li>
+                            <li><strong>2 TB shared across analytics workloads, 10+ EC2s:</strong> Approx. $600.00/month ($0.30/GB-month Standard).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Task 3: Network Costs -->
+            <section id="network-pricing" class="section-card">
+                <h2 class="text-3xl mb-6 text-center">3. Estimate Data Transfer & Network Component Expenses (Approx. US East - N. Virginia)</h2>
+                <p class="text-lg leading-relaxed mb-6 text-gray-700">
+                    Analyze data transfer expenses, configure load balancers, and understand NAT gateway costs and regional pricing differences.
+                </p>
+                <div class="overflow-x-auto rounded-lg border border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="table-header">Feature</th>
+                                <th class="table-header">Low Usage</th>
+                                <th class="table-header">Moderate Usage</th>
+                                <th class="table-header">High Usage</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="table-row">
+                                <td class="table-cell">Data Transfer (Outbound)</td>
+                                <td class="table-cell">10 GB/month to global users (Free Tier covers 100GB)</td>
+                                <td class="table-cell">100 GB/month to student users globally (within Free Tier)</td>
+                                <td class="table-cell">10 TB/month (approx. $0.09/GB for first 10TB = $921.60)</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell">Load Balancer</td>
+                                <td class="table-cell">1 ALB (Light traffic, 1000 LCU-hours/month) - Approx. $24.24/month</td>
+                                <td class="table-cell">1 ALB + 1 NLB (Medium API traffic) - Approx. $24.24 (ALB) + $20.86 (NLB) = $45.10/month</td>
+                                <td class="table-cell">2 ALBs + 2 NLBs with high TLS/UDP traffic, 24/7 - Approx. $48.48 (ALBs) + $41.72 (NLBs) = $90.20+/month</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell">NAT Gateway</td>
+                                <td class="table-cell">1 NAT GW, 10 GB data processed - Approx. $32.85/month ($0.045/hr + $0.045/GB)</td>
+                                <td class="table-cell">1 NAT GW, 100 GB data, 730 hours/month - Approx. $77.85/month</td>
+                                <td class="table-cell">2 NAT GWs, 2 TB processed, high uptime (730 hours) - Approx. $90 + $1843.20 = $1933.20/month</td>
+                            </tr>
+                            <tr class="table-row">
+                                <td class="table-cell">Regional Pricing</td>
+                                <td class="table-cell">N. Virginia (often cheapest)</td>
+                                <td class="table-cell">Oregon (mid-range)</td>
+                                <td class="table-cell">Mumbai (typically higher due to demand & local infra)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-8">
+        <div class="container text-center">
+            <p>&copy; 2025 AWS Pricing Estimator.Created for educational purposes by Harsh Juneja.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
